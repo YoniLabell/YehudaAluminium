@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>עבודות אלומיניום מקצועיות | AluMaster</title>
+  <meta name="description" content="חלונות, תריסים, סגירת מרפסות, פרגולות וגגונים – עם אחריות מלאה, חומרים איכותיים וביצוע מושלם לכל פרויקט." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --navy:#0f1b2d; --navy2:#16243a; --gold:#c9a84c; --gold-light:#e2c06a; --muted:#a0aab8; --white:#ffffff; --radius:12px; }
+    body { font-family:'Heebo',sans-serif; background:var(--white); color:#1a1a2e; line-height:1.6; }
+
+    .topbar { background:var(--navy); text-align:center; padding:10px 16px; }
+    .topbar a { color:var(--gold); text-decoration:none; font-size:1.05rem; font-weight:700; display:inline-flex; align-items:center; gap:8px; }
+    .topbar a::before { content:"📞"; }
+
+    .hero { position:relative; min-height:520px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:64px 24px; overflow:hidden; color:var(--white); }
+    .hero-bg { position:absolute; inset:0; background-image:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80'); background-size:cover; background-position:center; filter:brightness(0.32); z-index:0; }
+    .hero-overlay { position:absolute; inset:0; background:linear-gradient(160deg,rgba(15,27,45,0.75) 0%,rgba(201,168,76,0.12) 100%); z-index:1; }
+    .hero>*:not(.hero-bg):not(.hero-overlay) { position:relative; z-index:2; }
+    .badge { display:inline-flex; align-items:center; gap:6px; background:rgba(201,168,76,0.2); border:1px solid rgba(201,168,76,0.5); color:var(--gold-light); padding:6px 16px; border-radius:100px; font-size:0.85rem; font-weight:600; margin-bottom:24px; }
+    .badge::before { content:"⭐"; font-size:0.8rem; }
+    .hero h1 { font-size:clamp(2.4rem,8vw,3.4rem); font-weight:900; line-height:1.15; margin-bottom:20px; }
+    .hero h1 span { color:var(--gold); display:block; }
+    .hero p { color:rgba(255,255,255,0.85); font-size:1.05rem; max-width:480px; margin:0 auto 32px; line-height:1.7; }
+    .cta-group { display:flex; flex-direction:column; gap:12px; max-width:380px; margin:0 auto; }
+    .btn { display:flex; align-items:center; justify-content:center; gap:8px; padding:16px 24px; border-radius:var(--radius); font-size:1.05rem; font-weight:700; cursor:pointer; text-decoration:none; border:none; transition:transform 0.15s,box-shadow 0.15s; font-family:'Heebo',sans-serif; }
+    .btn:active { transform:scale(0.97); }
+    .btn-gold { background:linear-gradient(135deg,var(--gold),var(--gold-light)); color:var(--navy); box-shadow:0 4px 18px rgba(201,168,76,0.35); }
+    .btn-gold:hover { box-shadow:0 6px 24px rgba(201,168,76,0.5); }
+    .btn-outline { background:transparent; border:2px solid rgba(255,255,255,0.35); color:var(--white); }
+    .btn-outline:hover { border-color:var(--gold); color:var(--gold); }
+
+    .stats { background:var(--navy2); padding:28px 24px; display:grid; grid-template-columns:1fr 1fr; gap:20px; border-top:1px solid rgba(255,255,255,0.07); }
+    .stat { display:flex; align-items:center; gap:10px; }
+    .stat-icon { font-size:1.4rem; flex-shrink:0; }
+    .stat-label { font-size:0.82rem; color:var(--muted); }
+    .stat-value { font-size:1rem; font-weight:700; color:var(--white); }
+
+    .section { padding:56px 24px; }
+    .section-tag { display:block; text-align:center; font-size:0.8rem; font-weight:700; letter-spacing:2px; color:var(--gold); text-transform:uppercase; margin-bottom:10px; }
+    .section-title { text-align:center; font-size:clamp(1.6rem,5vw,2.2rem); font-weight:900; color:var(--navy); margin-bottom:8px; }
+    .section-line { width:48px; height:3px; background:var(--gold); border-radius:2px; margin:12px auto 40px; }
+
+    .services-grid { display:flex; flex-direction:column; gap:20px; max-width:600px; margin:0 auto; }
+    .service-card { background:#f8f9fc; border-radius:var(--radius); border:1px solid #eaeef4; overflow:hidden; transition:box-shadow 0.2s,transform 0.2s; }
+    .service-card:hover { box-shadow:0 6px 24px rgba(15,27,45,0.1); transform:translateY(-2px); }
+    .service-img { width:100%; height:180px; object-fit:cover; display:block; }
+    .card-body { display:flex; gap:16px; align-items:flex-start; padding:20px; }
+    .service-icon { font-size:1.6rem; flex-shrink:0; background:linear-gradient(135deg,var(--gold),var(--gold-light)); border-radius:10px; width:52px; height:52px; display:flex; align-items:center; justify-content:center; }
+    .card-text { flex:1; }
+    .card-text h3 { font-size:1.1rem; font-weight:800; color:var(--navy); margin-bottom:6px; text-align:center; }
+    .card-text p { font-size:0.9rem; color:#555; line-height:1.6; text-align:center; }
+
+    .numbers { background:var(--navy); padding:56px 24px; }
+    .numbers .section-title { color:var(--white); }
+    .numbers .section-tag { color:var(--gold-light); }
+    .numbers-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; max-width:600px; margin:0 auto; }
+    .number-card { background:rgba(255,255,255,0.05); border:1px solid rgba(201,168,76,0.2); border-radius:var(--radius); padding:24px 16px; text-align:center; }
+    .number-val { font-size:2.2rem; font-weight:900; color:var(--gold); line-height:1; margin-bottom:6px; }
+    .number-label { font-size:0.85rem; color:var(--muted); line-height:1.4; }
+
+    .why { background:#f4f6fb; }
+    .why-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; max-width:600px; margin:0 auto; }
+    .why-item { background:var(--white); border-radius:var(--radius); padding:20px 16px; text-align:center; border:1px solid #e8ecf4; }
+    .why-item .icon { font-size:2rem; margin-bottom:10px; }
+    .why-item h4 { font-size:0.95rem; font-weight:800; color:var(--navy); margin-bottom:6px; }
+    .why-item p { font-size:0.82rem; color:#666; line-height:1.5; }
+
+    .gallery { background:var(--navy2); padding:56px 24px; }
+    .gallery .section-title { color:var(--white); }
+    .gallery .section-tag { color:var(--gold-light); }
+    .gallery-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; max-width:700px; margin:0 auto; }
+    .gallery-grid img { width:100%; height:160px; object-fit:cover; border-radius:10px; transition:transform 0.3s; }
+    .gallery-grid img:hover { transform:scale(1.03); }
+    .gallery-grid img:first-child { grid-column:1/-1; height:220px; }
+
+    .process-steps { display:flex; flex-direction:column; max-width:500px; margin:0 auto; position:relative; }
+    .process-steps::before { content:''; position:absolute; right:23px; top:28px; bottom:28px; width:2px; background:linear-gradient(to bottom,var(--gold),transparent); }
+    .step { display:flex; gap:16px; align-items:flex-start; padding:20px 0; }
+    .step-num { width:48px; height:48px; border-radius:50%; background:linear-gradient(135deg,var(--gold),var(--gold-light)); color:var(--navy); font-weight:900; font-size:1.1rem; display:flex; align-items:center; justify-content:center; flex-shrink:0; position:relative; z-index:1; box-shadow:0 4px 12px rgba(201,168,76,0.3); }
+    .step h4 { font-size:1rem; font-weight:800; color:var(--navy); margin-bottom:4px; }
+    .step p { font-size:0.88rem; color:#555; }
+
+    .testimonials { background:#f4f6fb; padding:56px 24px; }
+    .testimonials-grid { display:flex; flex-direction:column; gap:16px; max-width:600px; margin:0 auto; }
+    .testimonial-card { background:var(--white); border-radius:var(--radius); padding:24px 20px; border:1px solid #e8ecf4; }
+    .testimonial-stars { color:var(--gold); font-size:1.1rem; margin-bottom:10px; }
+    .testimonial-text { font-size:0.92rem; color:#444; line-height:1.7; margin-bottom:14px; font-style:italic; }
+    .testimonial-author { display:flex; align-items:center; gap:10px; }
+    .author-avatar { width:38px; height:38px; border-radius:50%; background:linear-gradient(135deg,var(--gold),var(--navy)); display:flex; align-items:center; justify-content:center; color:white; font-weight:800; font-size:0.9rem; flex-shrink:0; }
+    .author-name { font-weight:700; font-size:0.9rem; color:var(--navy); }
+    .author-city { font-size:0.8rem; color:var(--muted); }
+    .author-project { font-size:0.78rem; color:var(--gold); font-weight:600; margin-top:2px; }
+
+    .lead-section { background:linear-gradient(135deg,var(--navy) 0%,#1a2d47 100%); padding:56px 24px; }
+    .lead-section .section-title { color:var(--white); }
+    .lead-section .section-tag { color:var(--gold-light); }
+    .lead-form { max-width:480px; margin:0 auto; display:flex; flex-direction:column; gap:14px; }
+    .form-group { display:flex; flex-direction:column; gap:6px; }
+    .form-group label { font-size:0.88rem; color:rgba(255,255,255,0.75); font-weight:600; }
+    .form-group input,.form-group textarea,.form-group select { background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); border-radius:10px; padding:14px 16px; color:var(--white); font-family:'Heebo',sans-serif; font-size:0.95rem; width:100%; transition:border-color 0.2s; }
+    .form-group input::placeholder,.form-group textarea::placeholder { color:rgba(255,255,255,0.35); }
+    .form-group input:focus,.form-group textarea:focus,.form-group select:focus { outline:none; border-color:var(--gold); }
+    .form-group select option { background:var(--navy); color:var(--white); }
+    .form-group textarea { resize:vertical; min-height:90px; }
+    .btn-submit { background:linear-gradient(135deg,var(--gold),var(--gold-light)); color:var(--navy); font-weight:800; font-size:1.1rem; padding:16px; border-radius:var(--radius); border:none; cursor:pointer; width:100%; margin-top:4px; transition:box-shadow 0.2s,transform 0.15s; font-family:'Heebo',sans-serif; }
+    .btn-submit:hover { box-shadow:0 6px 24px rgba(201,168,76,0.5); transform:translateY(-1px); }
+    .form-note { text-align:center; font-size:0.8rem; color:rgba(255,255,255,0.4); margin-top:8px; }
+    .success-msg { display:none; background:rgba(37,211,102,0.15); border:1px solid #25d366; border-radius:var(--radius); padding:16px; text-align:center; color:#25d366; font-weight:700; margin-top:8px; }
+
+    .final-cta { background:var(--navy2); color:var(--white); text-align:center; padding:48px 24px; }
+    .final-cta h2 { font-size:clamp(1.4rem,4vw,1.9rem); font-weight:900; margin-bottom:12px; }
+    .final-cta p { color:var(--muted); margin-bottom:28px; }
+    .final-cta .cta-group { margin:0 auto; }
+
+    footer { background:var(--navy); color:var(--muted); text-align:center; padding:24px 16px; font-size:0.82rem; }
+    footer a { color:var(--gold); text-decoration:none; }
+
+    .wa-float { position:fixed; bottom:24px; left:24px; width:58px; height:58px; background:#25d366; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 20px rgba(37,211,102,0.5); z-index:999; transition:transform 0.2s,box-shadow 0.2s; animation:wa-pulse 2.5s infinite; }
+    .wa-float:hover { transform:scale(1.1); box-shadow:0 6px 28px rgba(37,211,102,0.7); animation:none; }
+    @keyframes wa-pulse { 0%,100%{box-shadow:0 4px 20px rgba(37,211,102,0.5)} 50%{box-shadow:0 4px 32px rgba(37,211,102,0.85)} }
+
+    @media(min-width:640px) {
+      .services-grid { display:grid; grid-template-columns:1fr 1fr; }
+      .cta-group { flex-direction:row; }
+      .process-steps::before { display:none; }
+      .testimonials-grid { display:grid; grid-template-columns:1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="topbar"><a href="tel:03-330-2230">03-330-2230</a></div>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="badge">מומחים לעבודות אלומיניום מזה 15 שנה</div>
+  <h1>עבודות<br>אלומיניום<span>מקצועיות</span></h1>
+  <p>חלונות, תריסים, מרפסות וגגונים – עם אחריות מלאה, חומרים איכותיים וביצוע מושלם לכל פרויקט.</p>
+  <div class="cta-group">
+    <a href="https://wa.me/972549029017?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%90%D7%AA%20%D7%94%D7%90%D7%AA%D7%A8%20%D7%A9%D7%9C%D7%9B%D7%9D%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8" target="_blank" class="btn btn-gold">📋 קבל הצעת מחיר</a>
+    <a href="tel:03-330-2230" class="btn btn-outline">📞 התקשר עכשיו</a>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stat"><div class="stat-icon">✅</div><div><div class="stat-value">7 שנות אחריות</div><div class="stat-label">על כל עבודה</div></div></div>
+  <div class="stat"><div class="stat-icon">🏆</div><div><div class="stat-value">2,000+ פרויקטים</div><div class="stat-label">לקוחות מרוצים</div></div></div>
+  <div class="stat"><div class="stat-icon">🔧</div><div><div class="stat-value">15+ שנות ניסיון</div><div class="stat-label">בתחום האלומיניום</div></div></div>
+  <div class="stat"><div class="stat-icon">⏱️</div><div><div class="stat-value">מענה תוך 24 שעות</div><div class="stat-label">זמינים לכל שאלה</div></div></div>
+</div>
+
+<section class="section">
+  <span class="section-tag">מה אנחנו מציעים</span>
+  <h2 class="section-title">השירותים שלנו</h2>
+  <div class="section-line"></div>
+  <div class="services-grid">
+    <div class="service-card">
+      <img class="service-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="חלונות אלומיניום" loading="lazy" />
+      <div class="card-body">
+        <div class="service-icon">🪟</div>
+        <div class="card-text">
+          <h3>חלונות אלומיניום</h3>
+          <p>חלונות בעיצוב מודרני עם בידוד תרמי ואקוסטי מעולה. זכוכית כפולה, מסגרות צרות וצבעים לפי בחירה. מתאים לכל סוגי הבניינים.</p>
+        </div>
+      </div>
+    </div>
+    <div class="service-card">
+      <img class="service-img" src="https://images.unsplash.com/photo-1595514535116-a1c5c83a1bc4?w=600&q=80" alt="תריסים ורשתות" loading="lazy" />
+      <div class="card-body">
+        <div class="service-icon">🔲</div>
+        <div class="card-text">
+          <h3>תריסים ורשתות</h3>
+          <p>תריסים חשמליים וידניים בגוונים שונים, רשתות נגד יתושים – פתרון מלא לכל חלון ודלת.</p>
+        </div>
+      </div>
+    </div>
+    <div class="service-card">
+      <img class="service-img" src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=600&q=80" alt="סגירת מרפסת" loading="lazy" />
+      <div class="card-body">
+        <div class="service-icon">🏠</div>
+        <div class="card-text">
+          <h3>סגירת מרפסת</h3>
+          <p>סגירות מרפסת אלומיניום משולבות זכוכית – עיצוב נקי, תחזוקה נוחה ועמידות לאורך שנים.</p>
+        </div>
+      </div>
+    </div>
+    <div class="service-card">
+      <img class="service-img" src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=600&q=80" alt="פרגולות וגגונים" loading="lazy" />
+      <div class="card-body">
+        <div class="service-icon">⛱️</div>
+        <div class="card-text">
+          <h3>פרגולות וגגונים</h3>
+          <p>פרגולות וגגונים אלומיניום לחצרות, גינות ומרפסות. פתרון יציב ועמיד לשנים, אידיאלי להצללה.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section numbers">
+  <span class="section-tag">הנתונים מדברים בעד עצמם</span>
+  <h2 class="section-title">למה לבחור בנו?</h2>
+  <div class="section-line"></div>
+  <div class="numbers-grid">
+    <div class="number-card"><div class="number-val" data-target="2000" data-suffix=",000+">0</div><div class="number-label">פרויקטים שבוצעו</div></div>
+    <div class="number-card"><div class="number-val" data-target="7" data-suffix="">0</div><div class="number-label">שנות אחריות על כל עבודה</div></div>
+    <div class="number-card"><div class="number-val" data-target="15" data-suffix="+">0</div><div class="number-label">שנות ניסיון בתחום</div></div>
+    <div class="number-card"><div class="number-val" data-target="24" data-suffix="h">0</div><div class="number-label">מענה מהיר לכל פנייה</div></div>
+  </div>
+</section>
+
+<section class="section why">
+  <span class="section-tag">למה לבחור בנו</span>
+  <h2 class="section-title">היתרונות שלנו</h2>
+  <div class="section-line"></div>
+  <div class="why-grid">
+    <div class="why-item"><div class="icon">🛡️</div><h4>אחריות מלאה</h4><p>7 שנות אחריות על כל עבודה ומוצר</p></div>
+    <div class="why-item"><div class="icon">⭐</div><h4>חומרים איכותיים</h4><p>עובדים רק עם חומרים מהטובים בשוק</p></div>
+    <div class="why-item"><div class="icon">📐</div><h4>מידות מדויקות</h4><p>מדידה מקצועית ועיצוב לפי הדרישות</p></div>
+    <div class="why-item"><div class="icon">🔨</div><h4>שירות מקצועי גם לאחר ההתקנה</h4><p>זמינים לכל שאלה ותקלה גם אחרי הסיום</p></div>
+  </div>
+</section>
+
+<section class="section gallery">
+  <span class="section-tag">הפרויקטים שלנו</span>
+  <h2 class="section-title">עבודות אחרונות</h2>
+  <div class="section-line"></div>
+  <div class="gallery-grid">
+    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80" alt="מרפסת פרגולה" loading="lazy" />
+    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="חלונות אלומיניום" loading="lazy" />
+    <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=600&q=80" alt="סגירת מרפסת" loading="lazy" />
+    <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=600&q=80" alt="גגון אלומיניום" loading="lazy" />
+  </div>
+</section>
+
+<section class="section">
+  <span class="section-tag">איך זה עובד</span>
+  <h2 class="section-title">3 שלבים פשוטים</h2>
+  <div class="section-line"></div>
+  <div class="process-steps">
+    <div class="step"><div class="step-num">1</div><div><h4>יצירת קשר</h4><p>מתקשרים אלינו או שולחים פרטים – נחזור אליכם תוך 24 שעות.</p></div></div>
+    <div class="step"><div class="step-num">2</div><div><h4>מדידה והצעת מחיר</h4><p>מגיעים לנכס, מודדים ומגישים הצעת מחיר מפורטת ומחייבת.</p></div></div>
+    <div class="step"><div class="step-num">3</div><div><h4>ייצור והתקנה</h4><p>מייצרים לפי המידות ומתקינים בזמן שנקבע – עם אחריות מלאה.</p></div></div>
+  </div>
+</section>
+
+<section class="section testimonials">
+  <span class="section-tag">מה אומרים עלינו</span>
+  <h2 class="section-title">לקוחות ממליצים</h2>
+  <div class="section-line"></div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">עבודה מדהימה, הגיעו בזמן, עבדו נקי והתוצאה מרשימה. ממליץ בחום לכל מי שמחפש אלומיניום איכותי.</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">ד</div>
+        <div><div class="author-name">דוד שוקרון</div><div class="author-city">גבעתיים</div><div class="author-project">חלונות אלומיניום</div></div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">סגרתי את המרפסת שלי איתם – התוצאה מדהימה, מקצועיים ואדיבים לאורך כל הדרך. שירות ברמה אחרת.</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">א</div>
+        <div><div class="author-name">אושרית מרזל</div><div class="author-city">באר שבע</div><div class="author-project">פרגולה למרפסת</div></div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">התקינו לנו ויטרינת יציאה ומעקה – הכול מדויק, מהיר ובמחיר הוגן. בהחלט נחזור אליהם.</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">מ</div>
+        <div><div class="author-name">מיכל אברהם</div><div class="author-city">לוד</div><div class="author-project">ויטרינת יציאה</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section lead-section" id="leads">
+  <span class="section-tag">צור קשר</span>
+  <h2 class="section-title">קבל הצעת מחיר חינם</h2>
+  <div class="section-line"></div>
+  <div class="lead-form">
+    <div class="form-group"><label>שם מלא</label><input type="text" id="fname" placeholder="השם שלך" /></div>
+    <div class="form-group"><label>טלפון</label><input type="tel" id="fphone" placeholder="050-000-0000" /></div>
+    <div class="form-group">
+      <label>סוג השירות</label>
+      <select id="fservice">
+        <option value="">בחר שירות...</option>
+        <option>חלונות אלומיניום</option>
+        <option>תריסים ורשתות</option>
+        <option>סגירת מרפסת</option>
+        <option>פרגולות וגגונים</option>
+        <option>אחר</option>
+      </select>
+    </div>
+    <div class="form-group"><label>הערות</label><textarea id="fnotes" placeholder="אם יש לכם משהו חשוב לומר, זה המקום"></textarea></div>
+    <button class="btn-submit" onclick="submitForm()">📋 שלח בקשה לקבלת הצעת מחיר</button>
+    <div class="success-msg" id="successMsg">✅ תודה! נחזור אליך בהקדם.</div>
+    <p class="form-note">ללא עלות וללא התחייבות · מענה תוך 24 שעות</p>
+  </div>
+</section>
+
+<section class="final-cta">
+  <h2>מעדיפים לדבר ישירות?</h2>
+  <p>צוות המומחים שלנו זמין לכל שאלה</p>
+  <div class="cta-group">
+    <a href="tel:03-330-2230" class="btn btn-gold">📞 03-330-2230</a>
+    <a href="https://wa.me/972549029017?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%90%D7%AA%20%D7%94%D7%90%D7%AA%D7%A8%20%D7%A9%D7%9C%D7%9B%D7%9D%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8" class="btn btn-outline">💬 WhatsApp</a>
+  </div>
+</section>
+
+<a href="https://wa.me/972549029017?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%90%D7%AA%20%D7%94%D7%90%D7%AA%D7%A8%20%D7%A9%D7%9C%D7%9B%D7%9D%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8" class="wa-float" target="_blank" aria-label="WhatsApp">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="white">
+    <path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.831 1.783 6.865L2 30l7.335-1.762A13.94 13.94 0 0 0 16 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 25.5a11.44 11.44 0 0 1-5.833-1.594l-.418-.248-4.352 1.046 1.074-4.23-.272-.435A11.47 11.47 0 0 1 4.5 16C4.5 9.649 9.649 4.5 16 4.5S27.5 9.649 27.5 16 22.351 27.5 16 27.5zm6.29-8.61c-.344-.172-2.036-1.004-2.352-1.118-.316-.115-.546-.172-.776.172-.23.344-.89 1.118-1.09 1.348-.2.23-.4.258-.744.086-.344-.172-1.452-.535-2.766-1.707-1.022-.912-1.712-2.037-1.912-2.381-.2-.344-.021-.53.15-.701.155-.154.344-.402.516-.603.172-.2.23-.344.344-.574.115-.23.058-.43-.029-.603-.086-.172-.776-1.87-1.063-2.562-.28-.672-.564-.58-.776-.591l-.66-.011c-.23 0-.603.086-.918.43-.316.344-1.206 1.178-1.206 2.872s1.235 3.332 1.407 3.562c.172.23 2.43 3.71 5.888 5.204.823.355 1.465.567 1.966.726.826.263 1.578.226 2.172.137.662-.099 2.036-.832 2.323-1.635.287-.803.287-1.491.2-1.635-.086-.143-.316-.23-.66-.402z"/>
+  </svg>
+</a>
+
+<footer><p>© 2026 AluMaster – עבודות אלומיניום מקצועיות | <a href="tel:03-330-2230">03-330-2230</a></p></footer>
+
+<script>
+// Counter animation
+function animateCounter(el) {
+  const target = parseInt(el.dataset.target);
+  const suffix = el.dataset.suffix || '';
+  const duration = 1800;
+  const steps = 60;
+  const increment = target / steps;
+  let current = 0;
+  const timer = setInterval(() => {
+    current += increment;
+    if (current >= target) {
+      current = target;
+      clearInterval(timer);
+    }
+    const display = target === 2000
+      ? Math.floor(current).toLocaleString('en') + '+'
+      : Math.floor(current) + suffix;
+    el.textContent = display;
+  }, duration / steps);
+}
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.querySelectorAll('.number-val[data-target]').forEach(animateCounter);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.3 });
+
+const numbersSection = document.querySelector('.numbers-grid');
+if (numbersSection) observer.observe(numbersSection);
+
+function submitForm() {
+  const name = document.getElementById('fname').value.trim();
+  const phone = document.getElementById('fphone').value.trim();
+  if (!name || !phone) { alert('נא למלא שם וטלפון'); return; }
+  document.getElementById('successMsg').style.display = 'block';
+  const btn = document.querySelector('.btn-submit');
+  btn.disabled = true;
+  btn.textContent = 'הבקשה נשלחה!';
+}
+</script>
+</body>
+</html>
