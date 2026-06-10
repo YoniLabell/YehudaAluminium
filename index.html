@@ -136,6 +136,13 @@
       .process-steps::before { display:none; }
       .testimonials-grid { display:grid; grid-template-columns:1fr 1fr; }
     }
+
+    /* ===== נגישות גלובלית WCAG 2.2 / ת"י 5568 ===== */
+    .skip-link { position:absolute; top:-80px; right:16px; background:var(--gold); color:var(--navy); padding:12px 22px; font-weight:800; border-radius:0 0 var(--radius) var(--radius); z-index:10000; font-size:1rem; transition:top 0.15s; text-decoration:none; }
+    .skip-link:focus { top:0; }
+    :focus-visible { outline:3px solid var(--gold); outline-offset:3px; border-radius:4px; }
+    .btn:focus-visible, .btn-submit:focus-visible, .wa-float:focus-visible { outline:3px solid var(--gold); outline-offset:4px; }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration:0.01ms !important; transition-duration:0.01ms !important; } }
   </style>
 </head>
 <body>
@@ -144,13 +151,19 @@
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
-<div class="topbar"><a href="tel:03-330-2230">03-330-2230</a></div>
+<a href="#main-content" class="skip-link">דלג לתוכן הראשי</a>
 
-<section class="hero">
+<header role="banner">
+  <div class="topbar"><a href="tel:03-330-2230" aria-label="התקשר אלינו: 03-330-2230">03-330-2230</a></div>
+</header>
+
+<main id="main-content">
+
+<section class="hero" aria-labelledby="hero-heading">
   <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
   <div class="badge">מומחים לעבודות אלומיניום מזה 15 שנה</div>
-  <h1>עבודות<br>אלומיניום<span>מקצועיות</span></h1>
+  <h1 id="hero-heading">עבודות<br>אלומיניום<span>מקצועיות</span></h1>
   <p>חלונות, תריסים, מרפסות וגגונים – עם אחריות מלאה, חומרים איכותיים וביצוע מושלם לכל פרויקט.</p>
   <div class="cta-group">
     <a href="https://wa.me/972549029017?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%90%D7%AA%20%D7%94%D7%90%D7%AA%D7%A8%20%D7%A9%D7%9C%D7%9B%D7%9D%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8" target="_blank" class="btn btn-gold">📋 קבל הצעת מחיר</a>
@@ -298,11 +311,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <h2 class="section-title">קבל הצעת מחיר חינם</h2>
   <div class="section-line"></div>
   <div class="lead-form">
-    <div class="form-group"><label>שם מלא</label><input type="text" id="fname" placeholder="השם שלך" /></div>
-    <div class="form-group"><label>טלפון</label><input type="tel" id="fphone" placeholder="050-000-0000" /></div>
+    <div class="form-group"><label for="fname">שם מלא</label><input type="text" id="fname" name="fname" placeholder="השם שלך" autocomplete="name" aria-required="true" /></div>
+    <div class="form-group"><label for="fphone">טלפון</label><input type="tel" id="fphone" name="fphone" placeholder="050-000-0000" autocomplete="tel" aria-required="true" /></div>
     <div class="form-group">
-      <label>סוג השירות</label>
-      <select id="fservice">
+      <label for="fservice">סוג השירות</label>
+      <select id="fservice" name="fservice" aria-required="false">
         <option value="">בחר שירות...</option>
         <option>חלונות אלומיניום</option>
         <option>תריסים ורשתות</option>
@@ -311,8 +324,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <option>אחר</option>
       </select>
     </div>
-    <div class="form-group"><label>הערות</label><textarea id="fnotes" placeholder="אם יש לכם משהו חשוב לומר, זה המקום"></textarea></div>
-    <button class="btn-submit" onclick="submitForm()">📋 שלח בקשה לקבלת הצעת מחיר</button>
+    <div class="form-group"><label for="fnotes">הערות</label><textarea id="fnotes" name="fnotes" placeholder="אם יש לכם משהו חשוב לומר, זה המקום"></textarea></div>
+    <button class="btn-submit" onclick="submitForm()" aria-label="שלח בקשה לקבלת הצעת מחיר ללא עלות">📋 שלח בקשה לקבלת הצעת מחיר</button>
     <div class="success-msg" id="successMsg">✅ תודה! נחזור אליך בהקדם.</div>
     <p class="form-note">ללא עלות וללא התחייבות · מענה תוך 24 שעות</p>
   </div>
@@ -327,13 +340,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
-<a href="https://wa.me/972549029017?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%90%D7%AA%20%D7%94%D7%90%D7%AA%D7%A8%20%D7%A9%D7%9C%D7%9B%D7%9D%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8" class="wa-float" target="_blank" aria-label="WhatsApp">
+</main>
+
+<a href="https://wa.me/972549029017?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%90%D7%AA%20%D7%94%D7%90%D7%AA%D7%A8%20%D7%A9%D7%9C%D7%9B%D7%9D%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8" class="wa-float" target="_blank" aria-label="פנה אלינו בוואטסאפ לקבלת הצעת מחיר">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="white">
     <path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.831 1.783 6.865L2 30l7.335-1.762A13.94 13.94 0 0 0 16 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 25.5a11.44 11.44 0 0 1-5.833-1.594l-.418-.248-4.352 1.046 1.074-4.23-.272-.435A11.47 11.47 0 0 1 4.5 16C4.5 9.649 9.649 4.5 16 4.5S27.5 9.649 27.5 16 22.351 27.5 16 27.5zm6.29-8.61c-.344-.172-2.036-1.004-2.352-1.118-.316-.115-.546-.172-.776.172-.23.344-.89 1.118-1.09 1.348-.2.23-.4.258-.744.086-.344-.172-1.452-.535-2.766-1.707-1.022-.912-1.712-2.037-1.912-2.381-.2-.344-.021-.53.15-.701.155-.154.344-.402.516-.603.172-.2.23-.344.344-.574.115-.23.058-.43-.029-.603-.086-.172-.776-1.87-1.063-2.562-.28-.672-.564-.58-.776-.591l-.66-.011c-.23 0-.603.086-.918.43-.316.344-1.206 1.178-1.206 2.872s1.235 3.332 1.407 3.562c.172.23 2.43 3.71 5.888 5.204.823.355 1.465.567 1.966.726.826.263 1.578.226 2.172.137.662-.099 2.036-.832 2.323-1.635.287-.803.287-1.491.2-1.635-.086-.143-.316-.23-.66-.402z"/>
   </svg>
 </a>
 
-<footer><p>© 2026 AluMaster – עבודות אלומיניום מקצועיות | <a href="tel:03-330-2230">03-330-2230</a></p></footer>
+<footer role="contentinfo">
+  <p>© 2026 AluMaster – עבודות אלומיניום מקצועיות | <a href="tel:03-330-2230">03-330-2230</a></p>
+  <p style="margin-top:8px;">
+    <a href="accessibility.html">הצהרת נגישות</a>
+    &nbsp;|&nbsp;
+    <a href="privacy.html">מדיניות פרטיות</a>
+  </p>
+</footer>
 
 <script>
 // Counter animation
