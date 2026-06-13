@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="a11y-widget.css" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root { --navy:#0f1b2d; --navy2:#16243a; --gold:#c9a84c; --gold-light:#e2c06a; --muted:#a0aab8; --white:#ffffff; --radius:12px; }
+    :root { --navy:#0f1b2d; --navy2:#16243a; --gold:#c9a84c; --gold-light:#e2c06a; --gold-text:#6b4f0a; --muted:#a0aab8; --white:#ffffff; --radius:12px; }
     body { font-family:'Heebo',sans-serif; background:var(--white); color:#1a1a2e; line-height:1.6; }
 
     .topbar { background:var(--navy); text-align:center; padding:10px 16px; }
@@ -48,7 +48,7 @@
     .stat-value { font-size:1rem; font-weight:700; color:var(--white); }
 
     .section { padding:56px 24px; }
-    .section-tag { display:block; text-align:center; font-size:0.8rem; font-weight:700; letter-spacing:2px; color:var(--gold); text-transform:uppercase; margin-bottom:10px; }
+    .section-tag { display:block; text-align:center; font-size:0.8rem; font-weight:700; letter-spacing:2px; color:var(--gold-text); text-transform:uppercase; margin-bottom:10px; }
     .section-title { text-align:center; font-size:clamp(1.6rem,5vw,2.2rem); font-weight:900; color:var(--navy); margin-bottom:8px; }
     .section-line { width:48px; height:3px; background:var(--gold); border-radius:2px; margin:12px auto 40px; }
 
@@ -100,7 +100,7 @@
     .author-avatar { width:38px; height:38px; border-radius:50%; background:linear-gradient(135deg,var(--gold),var(--navy)); display:flex; align-items:center; justify-content:center; color:white; font-weight:800; font-size:0.9rem; flex-shrink:0; }
     .author-name { font-weight:700; font-size:0.9rem; color:var(--navy); }
     .author-city { font-size:0.8rem; color:var(--muted); }
-    .author-project { font-size:0.78rem; color:var(--gold); font-weight:600; margin-top:2px; }
+    .author-project { font-size:0.78rem; color:var(--gold-text); font-weight:700; margin-top:2px; }
 
     .lead-section { background:linear-gradient(135deg,var(--navy) 0%,#1a2d47 100%); padding:56px 24px; }
     .lead-section .section-title { color:var(--white); }
@@ -108,12 +108,16 @@
     .lead-form { max-width:480px; margin:0 auto; display:flex; flex-direction:column; gap:14px; }
     .form-group { display:flex; flex-direction:column; gap:6px; }
     .form-group label { font-size:0.88rem; color:rgba(255,255,255,0.75); font-weight:600; }
-    .form-group input,.form-group textarea,.form-group select { background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); border-radius:10px; padding:14px 16px; color:var(--white); font-family:'Heebo',sans-serif; font-size:0.95rem; width:100%; transition:border-color 0.2s; }
+    .form-group label .req { color:#ff8080; margin-right:2px; aria-hidden:true; }
+    .form-group input,.form-group textarea,.form-group select { background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); border-radius:10px; padding:14px 16px; color:var(--white); font-family:'Heebo',sans-serif; font-size:0.95rem; width:100%; transition:border-color 0.2s; min-height:44px; }
     .form-group input::placeholder,.form-group textarea::placeholder { color:rgba(255,255,255,0.35); }
-    .form-group input:focus,.form-group textarea:focus,.form-group select:focus { outline:none; border-color:var(--gold); }
+    .form-group input:focus,.form-group textarea:focus,.form-group select:focus { outline:2px solid var(--gold); outline-offset:2px; border-color:var(--gold); }
+    .form-group input[aria-invalid="true"],.form-group select[aria-invalid="true"] { border-color:#ff8080; outline-color:#ff8080; }
     .form-group select option { background:var(--navy); color:var(--white); }
     .form-group textarea { resize:vertical; min-height:90px; }
-    .btn-submit { background:linear-gradient(135deg,var(--gold),var(--gold-light)); color:var(--navy); font-weight:800; font-size:1.1rem; padding:16px; border-radius:var(--radius); border:none; cursor:pointer; width:100%; margin-top:4px; transition:box-shadow 0.2s,transform 0.15s; font-family:'Heebo',sans-serif; }
+    .field-error { color:#ff8080; font-size:0.82rem; font-weight:600; margin-top:2px; display:none; }
+    .field-error.visible { display:block; }
+    .btn-submit { background:linear-gradient(135deg,var(--gold),var(--gold-light)); color:var(--navy); font-weight:800; font-size:1.1rem; padding:16px; border-radius:var(--radius); border:none; cursor:pointer; width:100%; margin-top:4px; transition:box-shadow 0.2s,transform 0.15s; font-family:'Heebo',sans-serif; min-height:44px; }
     .btn-submit:hover { box-shadow:0 6px 24px rgba(201,168,76,0.5); transform:translateY(-1px); }
     .form-note { text-align:center; font-size:0.8rem; color:rgba(255,255,255,0.4); margin-top:8px; }
     .success-msg { display:none; background:rgba(37,211,102,0.15); border:1px solid #25d366; border-radius:var(--radius); padding:16px; text-align:center; color:#25d366; font-weight:700; margin-top:8px; }
@@ -251,11 +255,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <h2 class="section-title">עבודות אחרונות</h2>
   <div class="section-line"></div>
   <div class="gallery-grid">
-    <img src="main.jpeg" alt="עבודות אלומיניום" loading="lazy" />
-    <img src="1.jpeg" alt="תריסים ורשתות" loading="lazy" />
-    <img src="2.jpeg" alt="חלונות אלומיניום" loading="lazy" />
-    <img src="3.jpeg" alt="סגירת מרפסת" loading="lazy" />
-    <img src="4.jpeg" alt="פרגולות וגגונים" loading="lazy" />
+    <img src="main.jpeg" alt="פרויקט סגירת מרפסת עם חלונות אלומיניום – מבט כללי" loading="lazy" />
+    <img src="1.jpeg" alt="תריס חשמלי מאלומיניום מותקן בחלון בית פרטי" loading="lazy" />
+    <img src="2.jpeg" alt="חלונות אלומיניום עם זכוכית כפולה בבניין מגורים" loading="lazy" />
+    <img src="3.jpeg" alt="סגירת מרפסת עם קיר זכוכית ופרופיל אלומיניום" loading="lazy" />
+    <img src="4.jpeg" alt="פרגולה מאלומיניום בגינה פרטית המספקת הצללה לחצר" loading="lazy" />
   </div>
 </section>
 
@@ -276,7 +280,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="section-line"></div>
   <div class="testimonials-grid">
     <div class="testimonial-card">
-      <div class="testimonial-stars">★★★★★</div>
+      <div class="testimonial-stars" role="img" aria-label="דירוג 5 מתוך 5 כוכבים">★★★★★</div>
       <p class="testimonial-text">עבודה מדהימה, הגיעו בזמן, עבדו נקי והתוצאה מרשימה. ממליץ בחום לכל מי שמחפש אלומיניום איכותי.</p>
       <div class="testimonial-author">
         <div class="author-avatar">ד</div>
@@ -284,7 +288,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </div>
     <div class="testimonial-card">
-      <div class="testimonial-stars">★★★★★</div>
+      <div class="testimonial-stars" role="img" aria-label="דירוג 5 מתוך 5 כוכבים">★★★★★</div>
       <p class="testimonial-text">סגרתי את המרפסת שלי איתם – התוצאה מדהימה, מקצועיים ואדיבים לאורך כל הדרך. שירות ברמה אחרת.</p>
       <div class="testimonial-author">
         <div class="author-avatar">א</div>
@@ -292,7 +296,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </div>
     <div class="testimonial-card">
-      <div class="testimonial-stars">★★★★★</div>
+      <div class="testimonial-stars" role="img" aria-label="דירוג 5 מתוך 5 כוכבים">★★★★★</div>
       <p class="testimonial-text">התקינו לנו ויטרינת יציאה ומעקה – הכול מדויק, מהיר ובמחיר הוגן. בהחלט נחזור אליהם.</p>
       <div class="testimonial-author">
         <div class="author-avatar">מ</div>
@@ -306,12 +310,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <span class="section-tag">צור קשר</span>
   <h2 class="section-title">קבל הצעת מחיר חינם</h2>
   <div class="section-line"></div>
-  <div class="lead-form">
-    <div class="form-group"><label for="fname">שם מלא</label><input type="text" id="fname" name="fname" placeholder="השם שלך" autocomplete="name" aria-required="true" /></div>
-    <div class="form-group"><label for="fphone">טלפון</label><input type="tel" id="fphone" name="fphone" placeholder="050-000-0000" autocomplete="tel" aria-required="true" /></div>
+  <p id="form-required-note" style="font-size:0.82rem;color:rgba(255,255,255,0.5);margin-bottom:4px;">שדות המסומנים ב-<span aria-hidden="true" style="color:#ff8080;">*</span> הם חובה</p>
+  <div class="lead-form" role="form" aria-label="טופס קבלת הצעת מחיר">
+    <div class="form-group">
+      <label for="fname"><span class="req" aria-hidden="true">*</span> שם מלא</label>
+      <input type="text" id="fname" name="fname" placeholder="השם שלך" autocomplete="name" required aria-required="true" aria-describedby="fname-error" />
+      <span class="field-error" id="fname-error" role="alert">נא להזין שם מלא</span>
+    </div>
+    <div class="form-group">
+      <label for="fphone"><span class="req" aria-hidden="true">*</span> טלפון</label>
+      <input type="tel" id="fphone" name="fphone" placeholder="050-000-0000" autocomplete="tel" required aria-required="true" aria-describedby="fphone-error" />
+      <span class="field-error" id="fphone-error" role="alert">נא להזין מספר טלפון</span>
+    </div>
     <div class="form-group">
       <label for="fservice">סוג השירות</label>
-      <select id="fservice" name="fservice" aria-required="false">
+      <select id="fservice" name="fservice">
         <option value="">בחר שירות...</option>
         <option>חלונות אלומיניום</option>
         <option>תריסים ורשתות</option>
@@ -321,8 +334,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </select>
     </div>
     <div class="form-group"><label for="fnotes">הערות</label><textarea id="fnotes" name="fnotes" placeholder="אם יש לכם משהו חשוב לומר, זה המקום"></textarea></div>
-    <button class="btn-submit" onclick="submitForm()" aria-label="שלח בקשה לקבלת הצעת מחיר ללא עלות">📋 שלח בקשה לקבלת הצעת מחיר</button>
-    <div class="success-msg" id="successMsg">✅ תודה! נחזור אליך בהקדם.</div>
+    <button class="btn-submit" onclick="submitForm()" type="button">📋 שלח בקשה לקבלת הצעת מחיר</button>
+    <div class="success-msg" id="successMsg" role="status" aria-live="polite" aria-atomic="true">✅ תודה! נחזור אליך בהקדם.</div>
     <p class="form-note">ללא עלות וללא התחייבות · מענה תוך 24 שעות</p>
   </div>
 </section>
@@ -354,10 +367,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </footer>
 
 <script>
-// Counter animation
+// Counter animation – מכבד prefers-reduced-motion
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function getFinalDisplay(target, suffix) {
+  return target === 2000 ? '2,000+' : target + suffix;
+}
+
 function animateCounter(el) {
   const target = parseInt(el.dataset.target);
   const suffix = el.dataset.suffix || '';
+  if (prefersReducedMotion) {
+    el.textContent = getFinalDisplay(target, suffix);
+    return;
+  }
   const duration = 1800;
   const steps = 60;
   const increment = target / steps;
@@ -368,10 +391,7 @@ function animateCounter(el) {
       current = target;
       clearInterval(timer);
     }
-    const display = target === 2000
-      ? Math.floor(current).toLocaleString('en') + '+'
-      : Math.floor(current) + suffix;
-    el.textContent = display;
+    el.textContent = getFinalDisplay(Math.floor(current), suffix);
   }, duration / steps);
 }
 
@@ -387,10 +407,32 @@ const observer = new IntersectionObserver((entries) => {
 const numbersSection = document.querySelector('.numbers-grid');
 if (numbersSection) observer.observe(numbersSection);
 
+// Form validation – נגישה לקוראי מסך
+function setFieldError(inputId, errorId, show) {
+  const input = document.getElementById(inputId);
+  const error = document.getElementById(errorId);
+  if (show) {
+    input.setAttribute('aria-invalid', 'true');
+    error.classList.add('visible');
+  } else {
+    input.removeAttribute('aria-invalid');
+    error.classList.remove('visible');
+  }
+}
+
 function submitForm() {
-  const name = document.getElementById('fname').value.trim();
+  const name  = document.getElementById('fname').value.trim();
   const phone = document.getElementById('fphone').value.trim();
-  if (!name || !phone) { alert('נא למלא שם וטלפון'); return; }
+  let hasError = false;
+
+  if (!name)  { setFieldError('fname',  'fname-error',  true);  hasError = true; } else { setFieldError('fname',  'fname-error',  false); }
+  if (!phone) { setFieldError('fphone', 'fphone-error', true);  hasError = true; } else { setFieldError('fphone', 'fphone-error', false); }
+
+  if (hasError) {
+    document.getElementById('fname').focus();
+    return;
+  }
+
   document.getElementById('successMsg').style.display = 'block';
   const btn = document.querySelector('.btn-submit');
   btn.disabled = true;
