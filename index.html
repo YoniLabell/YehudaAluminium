@@ -432,6 +432,18 @@ function submitForm() {
     return;
   }
 
+  const service = document.getElementById('fservice').value;
+  const notes   = document.getElementById('fnotes').value.trim();
+
+  let msg = `שלום, קיבלתי פנייה חדשה מהאתר premiumaluminum.net:\n\n`;
+  msg += `👤 שם: ${name}\n`;
+  msg += `📞 טלפון: ${phone}\n`;
+  if (service) msg += `🔧 שירות: ${service}\n`;
+  if (notes)   msg += `📝 הערות: ${notes}\n`;
+
+  const waUrl = `https://wa.me/972549029017?text=${encodeURIComponent(msg)}`;
+  window.open(waUrl, '_blank', 'noopener');
+
   document.getElementById('successMsg').style.display = 'block';
   const btn = document.querySelector('.btn-submit');
   btn.disabled = true;
