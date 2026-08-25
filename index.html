@@ -170,7 +170,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <h1 id="hero-heading">עבודות<br>אלומיניום<span>מקצועיות</span></h1>
   <p>חלונות, תריסים, מרפסות וגגונים – עם אחריות מלאה, חומרים איכותיים וביצוע מושלם לכל פרויקט.</p>
   <div class="cta-group">
-    <a href="https://wa.me/972549029017?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%A8%D7%90%D7%99%D7%AA%D7%99%20%D7%90%D7%AA%20%D7%94%D7%90%D7%AA%D7%A8%20%D7%A9%D7%9C%D7%9B%D7%9D%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A7%D7%91%D7%9C%20%D7%94%D7%A6%D7%A2%D7%AA%20%D7%9E%D7%97%D7%99%D7%A8" target="_blank" class="btn btn-gold">📋 קבל הצעת מחיר</a>
+    <a href="#leads" class="btn btn-gold">📋 קבל הצעת מחיר</a>
     <a href="tel:03-330-2230" class="btn btn-outline">📞 התקשר עכשיו</a>
   </div>
 </section>
@@ -419,7 +419,9 @@ function setFieldError(inputId, errorId, show) {
   }
 }
 
-function submitForm() {
+const LEAD_WEBHOOK_URL = 'https://hook.eu1.make.com/jrznqmqb80vidre6vv11kc49qryc7fx3';
+
+async function submitForm() {
   const name  = document.getElementById('fname').value.trim();
   const phone = document.getElementById('fphone').value.trim();
   let hasError = false;
@@ -435,19 +437,42 @@ function submitForm() {
   const service = document.getElementById('fservice').value;
   const notes   = document.getElementById('fnotes').value.trim();
 
-  let msg = `שלום, קיבלתי פנייה חדשה מהאתר premiumaluminum.net:\n\n`;
-  msg += `👤 שם: ${name}\n`;
-  msg += `📞 טלפון: ${phone}\n`;
-  if (service) msg += `🔧 שירות: ${service}\n`;
-  if (notes)   msg += `📝 הערות: ${notes}\n`;
-
-  const waUrl = `https://wa.me/972549029017?text=${encodeURIComponent(msg)}`;
-  window.open(waUrl, '_blank', 'noopener');
-
-  document.getElementById('successMsg').style.display = 'block';
   const btn = document.querySelector('.btn-submit');
+  const originalBtnText = btn.textContent;
   btn.disabled = true;
-  btn.textContent = 'הבקשה נשלחה!';
+  btn.textContent = 'שולח...';
+
+  const payload = {
+    name,
+    phone,
+    service,
+    notes,
+    source: 'premiumaluminum.net',
+    page_url: window.location.href,
+    submitted_at: new Date().toISOString()
+  };
+
+  try {
+    const response = await fetch(LEAD_WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+
+    if (!response.ok) throw new Error('Webhook responded with status ' + response.status);
+
+    document.getElementById('successMsg').style.display = 'block';
+    btn.textContent = 'הבקשה נשלחה!';
+    document.getElementById('fname').value = '';
+    document.getElementById('fphone').value = '';
+    document.getElementById('fnotes').value = '';
+    document.getElementById('fservice').value = '';
+  } catch (err) {
+    console.error('Lead form submit failed:', err);
+    btn.disabled = false;
+    btn.textContent = originalBtnText;
+    alert('אירעה שגיאה בשליחת הטופס. אנא נסו שוב או צרו קשר טלפוני.');
+  }
 }
 </script>
 <script src="a11y-widget.js"></script>
